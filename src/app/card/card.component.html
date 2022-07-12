@@ -1,0 +1,7 @@
+<div class="card" *ngFor="let item of cardInputValue" (click)="cardClick(item.modelItem)">
+  <ion-badge class="badge">{{item.voteRating}}</ion-badge>
+  <div>
+    <ion-img [src]="item.image"></ion-img>
+  </div>
+  <h3 class="ion-margin-vertical text-content">{{item.title}}</h3>
+</div>

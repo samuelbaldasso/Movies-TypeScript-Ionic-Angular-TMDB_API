@@ -1,0 +1,5 @@
+<ion-slides pager="true" [options]="slideOpts">
+  <ion-slide *ngFor="let item of sliderInputValue" (click)="sliderClick(item.modelItem)">
+    <img src="{{item.poster}}" alt="">
+  </ion-slide>
+</ion-slides>
