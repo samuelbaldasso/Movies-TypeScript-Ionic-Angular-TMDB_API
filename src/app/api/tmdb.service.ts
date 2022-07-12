@@ -17,8 +17,8 @@ export class TmdbService {
     const imodal = await this.modal.create({
       component: ModalComponent,
       componentProps: {
-        modelType: type,
         modelItemList: modelItem,
+        modelType: type
       },
     });
     this.currentModal.push(imodal);
@@ -42,6 +42,7 @@ export class TmdbService {
   }
 
   getCredits(type: string, id: string): Observable<any> {
+    // const url = `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${api}&language=en-US`;
     const url = `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${api}&language=pt-BR`;
     return this.http.get(url);
   }

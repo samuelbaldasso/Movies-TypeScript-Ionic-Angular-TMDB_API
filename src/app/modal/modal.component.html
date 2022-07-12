@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{title}}</ion-title>
     <ion-buttons slot="end">
       <ion-button>
         <ion-label (click)="onClick()">X</ion-label>
@@ -12,5 +11,11 @@
 <ion-content>
   <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
 
-
+  <div *ngIf="castList.length > 0">
+    <ion-list>
+      <ion-list-header>
+        <h3>Casting</h3>
+      </ion-list-header>
+    </ion-list>
+  </div>
 </ion-content>

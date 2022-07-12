@@ -9,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
   modelType = 'movie';
-  page = 1;
+  page: number;
   appCard = [];
   appSlider = [];
   loadingCurrentData: any;
+
   constructor(private tmdb: TmdbService) {}
 
   ngOnInit(): void {
@@ -68,10 +69,10 @@ export class HomePage implements OnInit {
   }
 
   cardListener(modelItem){
-    forkJoin(this.tmdb.getDetails(modelItem.id, this.modelType),
-    this.tmdb.getCredits(modelItem.id, this.modelType)).subscribe(data => {
-      modelItem.detailsData = data[0];
-      modelItem.creditsData = data[1];
+    forkJoin(this.tmdb.getCredits(this.modelType, modelItem.id),
+    this.tmdb.getDetails(this.modelType, modelItem.id)).subscribe(data => {
+      modelItem.creditsData = data[0];
+      modelItem.detailsData = data[1];
     });
     this.tmdb.presentModal(modelItem, this.modelType);
   }
