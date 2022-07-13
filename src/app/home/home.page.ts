@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
     this.initialize();
   }
 
-  initialize() {
+  initialize(){
     this.page = 1;
     this.initializePopular();
   }
@@ -35,13 +35,12 @@ export class HomePage implements OnInit {
           title: el.title,
           image: 'https://image.tmdb.org/t/p/original/' + el.backdrop_path,
           poster: 'https://image.tmdb.org/t/p/original/' + el.poster_path,
-          voteRating: el.vote_average
+          voteRating: el.vote_average,
         });
       });
-
-      if(this.page > 1){
+      if (this.page > 1) {
         this.loadingCurrentData.target.complete();
-        if(data.results.length === 0){
+        if (this.loadingCurrentData.results.length === 0) {
           this.loadingCurrentData.target.disabled = true;
         }
       }
@@ -55,13 +54,13 @@ export class HomePage implements OnInit {
           id: el.id,
           image: 'https://image.tmdb.org/t/p/original/' + el.backdrop_path,
           poster: 'https://image.tmdb.org/t/p/original/' + el.poster_path,
-          modelItem: el
+          modelItem: el,
         });
       });
     });
   }
 
-  loadData(event){
+  loadData(event) {
     this.page = this.page + 1;
     this.loadingCurrentData = event;
     this.initializePopular();
@@ -72,7 +71,7 @@ export class HomePage implements OnInit {
     this.tmdb.getDetails(this.modelType, modelItem.id)).subscribe(data => {
       modelItem.creditsData = data[0];
       modelItem.detailsData = data[1];
+      this.tmdb.presentModal(modelItem, this.modelType);
     });
-    this.tmdb.presentModal(modelItem, this.modelType);
   }
 }

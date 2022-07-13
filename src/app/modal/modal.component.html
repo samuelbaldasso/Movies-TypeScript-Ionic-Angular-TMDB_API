@@ -11,11 +11,55 @@
 <ion-content>
   <ion-progress-bar type="indeterminate" *ngIf="isLoading"></ion-progress-bar>
 
+  <div>
+    <ion-img [src]="background"></ion-img>
+  </div>
+
+  <div>
+    <h2 style="margin: 12px;">{{title}}</h2>
+  </div>
+
   <div *ngIf="castList.length > 0">
     <ion-list>
       <ion-list-header>
-        <h3>Casting</h3>
+        <h3>Elenco</h3>
       </ion-list-header>
+
+      <ion-item *ngFor="let item of castList">
+        <ion-avatar>
+          <img src="{{item.profile_path}}" alt="" *ngIf="item.profile_path; else defaultIcon">
+          <ng-template #defaultIcon>
+            <ion-icon style="font-size: 36px;" name="person-circle-outline"></ion-icon>
+          </ng-template>
+        </ion-avatar>
+
+          <ion-label style="margin: 12px;">
+            <h2>{{item.name}}</h2>
+            <h2>{{item.character}}</h2>
+          </ion-label>
+        </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="crewList.length > 0">
+    <ion-list>
+      <ion-list-header>
+        <h3>Equipe</h3>
+      </ion-list-header>
+
+      <ion-item *ngFor="let item of crewList">
+        <ion-avatar>
+          <img src="{{item.profile_path}}" alt="" *ngIf="item.profile_path; else defaultIcon">
+          <ng-template #defaultIcon>
+            <ion-icon style="font-size: 36px;" name="person-circle-outline"></ion-icon>
+          </ng-template>
+        </ion-avatar>
+
+          <ion-label style="margin: 12px;">
+            <h2>{{item.name}}</h2>
+            <h2>{{item.department}}</h2>
+          </ion-label>
+        </ion-item>
     </ion-list>
   </div>
 </ion-content>

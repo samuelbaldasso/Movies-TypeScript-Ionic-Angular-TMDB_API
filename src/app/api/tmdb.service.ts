@@ -13,16 +13,16 @@ export class TmdbService {
   currentModal = [];
   constructor(private http: HttpClient, private modal: ModalController) {}
 
-  async presentModal(type: string, modelItem: any) {
-    const imodal = await this.modal.create({
+  async presentModal(modelItem, type){
+    const modal = await this.modal.create({
       component: ModalComponent,
       componentProps: {
         modelItemList: modelItem,
         modelType: type
-      },
+      }
     });
-    this.currentModal.push(imodal);
-    return await imodal.present();
+    this.currentModal.push(modal);
+    return await modal.present();
   }
 
   dismissModal() {

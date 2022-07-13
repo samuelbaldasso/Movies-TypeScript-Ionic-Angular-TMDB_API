@@ -13,7 +13,7 @@
       <ion-row>
         <ion-col *ngFor="let item of appCard" size-lg="2" size-md="4" size-sm="6" size-xs="6">
           <app-card [title]="item.title" [image]="item.image" [model]="item.modelItem"
-          [voteRating]="item.voteRating" (click)="cardListener($event)"></app-card>
+          [voteRating]="item.voteRating" (cardTrigger)="cardListener($event)"></app-card>
         </ion-col>
       </ion-row>
     </ion-grid>
