@@ -7,7 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  @Input() cardInputValue;
+  @Input() title;
+  @Input() image;
+  @Input() voteRating;
+  @Input() model;
   @Output() cardTrigger = new EventEmitter();
   constructor() { }
 

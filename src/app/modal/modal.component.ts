@@ -10,7 +10,7 @@ export class ModalComponent implements OnInit {
   @Input() modelItemList: any;
 
   isLoading: boolean;
-  id: any;
+  id: string;
   title: string;
   background: string;
   castList = [];
@@ -26,7 +26,9 @@ export class ModalComponent implements OnInit {
     this.isLoading = true;
     this.title = this.modelItemList.detailsData.title;
     this.id = this.modelItemList.detailsData.id;
-    this.background = 'https://image.tmdb.org/t/p/original/' + this.modelItemList.detailsData.backdrop_path;
+
+    this.background = 'https://image.tmdb.org/t/p/original/' +
+    this.modelItemList.detailsData.backdrop_path;
 
     this.modelItemList.creditsData.cast.forEach((el) => {
       if (el.profile_path) {
