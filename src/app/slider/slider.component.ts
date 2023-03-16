@@ -11,7 +11,7 @@ export class SliderComponent implements OnInit {
   @Output() sliderTrigger = new EventEmitter();
   slideOpts = {};
 
-  constructor(public plat: Platform) {}
+  constructor(public plat: Platform) { }
 
   ngOnInit() {
     this.platformCheck();
@@ -21,10 +21,17 @@ export class SliderComponent implements OnInit {
   }
 
   platformCheck() {
+    if (this.plat.width() >= 425) {
+      this.slideOpts = {
+        slidesPerView: 2,
+        freeMode: true,
+      };
+    } else {
       this.slideOpts = {
         slidesPerView: 1,
         freeMode: true,
       };
+    }
   }
 
   sliderClick(model) {
