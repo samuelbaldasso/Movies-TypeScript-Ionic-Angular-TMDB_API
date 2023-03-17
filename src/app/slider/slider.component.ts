@@ -13,28 +13,28 @@ export class SliderComponent implements OnInit {
 
   constructor(public plat: Platform) { }
 
-  ngOnInit() {
-    this.platformCheck();
-    this.plat.resize.subscribe(async () => {
-      this.platformCheck();
-    });
-  }
+  ngOnInit() { }
+  //   this.platformCheck();
+  //   this.plat.resize.subscribe(async () => {
+  //     this.platformCheck();
+  //   });
+  // }
 
-  platformCheck() {
-    if (this.plat.width() >= 425) {
-      this.slideOpts = {
-        slidesPerView: 2,
-        freeMode: true,
-      };
-    } else {
-      this.slideOpts = {
-        slidesPerView: 1,
-        freeMode: true,
-      };
-    }
-  }
+  // platformCheck() {
+  //   if (this.plat.width() >= 425) {
+  //     this.slideOpts = {
+  //       slidesPerView: 2,
+  //       freeMode: false,
+  //     };
+  //   } else {
+  //     this.slideOpts = {
+  //       slidesPerView: 1,
+  //       freeMode: false,
+  //     };
+  //   }
+  // }
 
-  sliderClick(model) {
-    this.sliderTrigger.emit(model);
-  }
+  // sliderClick(model) {
+  //   this.sliderTrigger.emit(model);
+  // }
 }

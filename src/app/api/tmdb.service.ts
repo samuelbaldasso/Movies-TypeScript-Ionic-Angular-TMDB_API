@@ -11,9 +11,9 @@ const api = environment.apiKey;
 })
 export class TmdbService {
   currentModal = [];
-  constructor(private http: HttpClient, private modal: ModalController) {}
+  constructor(private http: HttpClient, private modal: ModalController) { }
 
-  async presentModal(modelItem, type){
+  async presentModal(modelItem, type) {
     const modal = await this.modal.create({
       component: ModalComponent,
       componentProps: {
@@ -32,22 +32,22 @@ export class TmdbService {
   }
 
   getPopular(type: string, page: number): Observable<any> {
-    const url = `https://api.themoviedb.org/3/${type}/popular?api_key=${api}&language=pt-BR&page=${page}`;
+    const url = `https://api.themoviedb.org/3/${type}/popular?api_key=${api}&language=&append_to_response=images&page=${page}`;
     return this.http.get(url);
   }
 
   getTrending(type: string): Observable<any> {
-    const url = `https://api.themoviedb.org/3/trending/${type}/day?api_key=${api}&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/trending/${type}/day?api_key=${api}&language=&append_to_response=images`;
     return this.http.get(url);
   }
 
   getCredits(type: string, id: string): Observable<any> {
-    const url = `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${api}&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${api}&language=&append_to_response=images`;
     return this.http.get(url);
   }
 
   getDetails(type: string, id: string): Observable<any> {
-    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${api}&language=pt-BR`;
+    const url = `https://api.themoviedb.org/3/${type}/${id}?api_key=${api}&language=&append_to_response=images`;
     return this.http.get(url);
   }
 }

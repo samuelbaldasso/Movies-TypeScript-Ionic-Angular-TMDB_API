@@ -1,7 +1,7 @@
 <div class="card" (click)="cardClick(model)">
-  <ion-badge class="badge">{{voteRating}}</ion-badge>
-  <div>
-    <ion-img [src]="image"></ion-img>
+  <ion-badge class="badge">{{ voteRating }}</ion-badge>
+  <div class="image">
+    <img [src]="image" />
   </div>
-  <ion-title class="ion-margin-vertical text-content">{{title}}</ion-title>
+  <ion-title class="ion-margin-vertical text-content">{{ title }}</ion-title>
 </div>

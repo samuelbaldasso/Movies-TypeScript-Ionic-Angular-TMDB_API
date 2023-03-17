@@ -14,14 +14,14 @@ export class HomePage implements OnInit {
   appSlider = [];
   loadingCurrentData: any;
 
-  constructor(private tmdb: TmdbService) {}
+  constructor(private tmdb: TmdbService) { }
 
   ngOnInit(): void {
     this.initializeTrending();
     this.initialize();
   }
 
-  initialize(){
+  initialize() {
     this.page = 1;
     this.initializePopular();
   }
@@ -29,18 +29,20 @@ export class HomePage implements OnInit {
   initializePopular() {
     this.tmdb.getPopular(this.modelType, this.page).subscribe((data) => {
       data.results.forEach((el) => {
-        this.appCard.push({
-          modelItem: el,
-          id: el.id,
-          title: el.title,
-          image: 'https://image.tmdb.org/t/p/original/' + el.backdrop_path,
-          poster: 'https://image.tmdb.org/t/p/original/' + el.poster_path,
-          voteRating: el.vote_average,
-        });
+        if (el.backdrop_path != null) {
+          this.appCard.push({
+            modelItem: el,
+            id: el.id,
+            title: el.title,
+            image: 'https://image.tmdb.org/t/p/original/' + el.backdrop_path,
+            poster: 'https://image.tmdb.org/t/p/original/' + el.poster_path,
+            voteRating: el.vote_average,
+          });
+        }
       });
       if (this.page > 1) {
         this.loadingCurrentData.target.complete();
-        if (this.loadingCurrentData.results.length === 0) {
+        if (this.loadingCurrentData.results === 0) {
           this.loadingCurrentData.target.disabled = true;
         }
       }
@@ -66,12 +68,12 @@ export class HomePage implements OnInit {
     this.initializePopular();
   }
 
-  cardListener(modelItem){
+  cardListener(modelItem) {
     forkJoin(this.tmdb.getCredits(this.modelType, modelItem.id),
-    this.tmdb.getDetails(this.modelType, modelItem.id)).subscribe(data => {
-      modelItem.creditsData = data[0];
-      modelItem.detailsData = data[1];
-      this.tmdb.presentModal(modelItem, this.modelType);
-    });
+      this.tmdb.getDetails(this.modelType, modelItem.id)).subscribe(data => {
+        modelItem.creditsData = data[0];
+        modelItem.detailsData = data[1];
+        this.tmdb.presentModal(modelItem, this.modelType);
+      });
   }
 }

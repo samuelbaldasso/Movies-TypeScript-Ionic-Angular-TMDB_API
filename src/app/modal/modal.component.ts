@@ -14,7 +14,7 @@ export class ModalComponent implements OnInit {
   castList = [];
   crewList = [];
 
-  constructor(private tmdb: TmdbService, private navParams: NavParams) {}
+  constructor(private tmdb: TmdbService, private navParams: NavParams) { }
 
   ngOnInit() {
     this.initialize();
@@ -23,7 +23,6 @@ export class ModalComponent implements OnInit {
   initialize() {
     this.isLoading = true;
     const { modelItemList } = this.navParams.data;
-    const id = modelItemList.detailsData.id;
     this.title = modelItemList.detailsData.title;
     this.background =
       'https://image.tmdb.org/t/p/original/' +

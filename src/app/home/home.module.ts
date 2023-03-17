@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { SplashComponent } from '../splash/splash.component';
 
 
 @NgModule({
@@ -14,8 +15,8 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    ComponentModule
+    ComponentModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, SplashComponent]
 })
-export class HomePageModule {}
+export class HomePageModule { }
