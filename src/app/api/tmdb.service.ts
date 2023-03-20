@@ -11,21 +11,26 @@ const api = environment.apiKey;
 })
 export class TmdbService {
   currentModal = [];
+  modalOpen = false;
   constructor(private http: HttpClient, private modal: ModalController) { }
 
   async presentModal(modelItem, type) {
-    const modal = await this.modal.create({
-      component: ModalComponent,
-      componentProps: {
-        modelItemList: modelItem,
-        modelType: type
-      }
-    });
-    this.currentModal.push(modal);
-    return await modal.present();
+    if (!this.modalOpen) {
+      this.modalOpen = true;
+      const modal = await this.modal.create({
+        component: ModalComponent,
+        componentProps: {
+          modelItemList: modelItem,
+          modelType: type
+        }
+      });
+      this.currentModal.push(modal);
+      return await modal.present();
+    }
   }
 
   dismissModal() {
+    this.modalOpen = false;
     this.currentModal[this.currentModal.length - 1].dismiss().then(() => {
       this.currentModal.pop();
     });
