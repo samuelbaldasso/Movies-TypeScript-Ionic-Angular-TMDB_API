@@ -43,7 +43,7 @@ Movie App é uma aplicação móvel que utiliza a API do The Movie Database (TMD
 3. Configure as variáveis de ambiente:
     Crie um arquivo `.env` na raiz do projeto e adicione a sua chave de API do TMDB:
     ```sh
-    CHAVE_DA_API=sua-chave-de-api-tmdb
+    apiKey=sua-chave-de-api-tmdb
     ```
 
 5. Execute o aplicativo em um servidor de desenvolvimento:
